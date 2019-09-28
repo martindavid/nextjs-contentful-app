@@ -17,6 +17,7 @@ export type HeroImage = {
 };
 
 export type BlogPost = {
+  id: string;
   body: string;
   description: string;
   publishedDate: string;

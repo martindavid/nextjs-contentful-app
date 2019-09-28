@@ -19,6 +19,7 @@ const defaultProps = {
 };
 
 type BlogBoxProps = {
+  id: string;
   slug: string;
   imageUrl: string;
   title: string;
@@ -26,21 +27,11 @@ type BlogBoxProps = {
 } & typeof defaultProps;
 
 export const BlogBox = (props: BlogBoxProps) => {
-  //const shortenedExcerpt = props.excerpt
-  //.split(" ")
-  //.splice(0, 20)
-  //.join(" ");
   return (
     <div className={`col-lg-4 ${props.className} mt-3`}>
       <article className="card">
-        <div className="card__info-hover">
-          <div className="card__clock-info">
-            <div>Clock Icon</div>
-            <span className="card__time">15 min</span>
-          </div>
-        </div>
         <ImageContainer imageUrl={props.imageUrl} className="card__img" />
-        <a href="#" className="card_link">
+        <a href={`/blog/detail?id=${props.id}`} className="card_link">
           <ImageContainer
             imageUrl={props.imageUrl}
             className="card__img--hover"
@@ -50,7 +41,13 @@ export const BlogBox = (props: BlogBoxProps) => {
           {props.tags && props.tags.length > 0 && (
             <span className="card__category">{props.tags[0]}</span>
           )}
-          <h3 className="card__title">{props.title}</h3>
+
+          <a
+            style={{ color: "#000", textDecoration: "none" }}
+            href={`/blog/detail?id=${props.id}`}
+          >
+            <h3 className="card__title">{props.title}</h3>
+          </a>
           <span className="card__by">
             by{" "}
             <a href="#" className="card__author" title="author">
@@ -58,7 +55,10 @@ export const BlogBox = (props: BlogBoxProps) => {
             </a>
           </span>
         </div>
-        <div className="card__description">{props.description}</div>
+
+        <div className="card__info-hover">
+          <div className="card__description">{props.description}</div>
+        </div>
       </article>
     </div>
   );

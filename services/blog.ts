@@ -40,13 +40,15 @@ export class BlogApi {
     return null;
   };
 
-  convertPost = (rawPost): BlogPost => {
+  convertPost = (rawData): BlogPost => {
+    const rawPost = rawData.fields;
     const rawHeroImage = rawPost.heroImage ? rawPost.heroImage.fields : null;
     const rawAuthor = rawPost.author ? rawPost.author.fields : null;
     return {
+      id: rawData.sys.id,
       body: rawPost.body,
       description: rawPost.description,
-      publishedDate: moment(rawPost.publishedDate).format("DD/MM/YYYY"),
+      publishedDate: moment(rawPost.publishedDate).format("DD MMM YYYY"),
       slug: rawPost.slug,
       tags: rawPost.tags,
       title: rawPost.title,
@@ -62,12 +64,20 @@ export class BlogApi {
       })
       .then(entries => {
         if (entries && entries.items && entries.items.length > 0) {
-          const blogPosts = entries.items.map(entry =>
-            this.convertPost(entry.fields)
-          );
+          const blogPosts = entries.items.map(entry => this.convertPost(entry));
           return blogPosts;
         }
         return [];
       });
+  }
+
+  async fetchBlogById(id): Promise<BlogPost> {
+    return await this.client.getEntry(id).then(entry => {
+      if (entry) {
+        const post = this.convertPost(entry);
+        return post;
+      }
+      return null;
+    });
   }
 }

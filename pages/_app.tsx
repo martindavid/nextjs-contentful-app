@@ -8,8 +8,12 @@ export default class CustomApp extends App {
       NProgress.start();
     });
 
-    Router.events.on("routeChangeComplete", () => NProgress.done());
-    Router.events.on("routeChangeError", () => NProgress.done());
+    Router.events.on("routeChangeComplete", () => {
+      NProgress.done();
+    });
+    Router.events.on("routeChangeError", () => {
+      NProgress.done();
+    });
   }
 
   componentDidCatch(error: any, errorInfo: any) {

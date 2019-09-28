@@ -16,6 +16,7 @@
     "nprogress": "^0.2.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "react-markdown": "^4.2.2",
     "reactstrap": "^8.0.1",
     "styled-components": "^4.4.0"
   },

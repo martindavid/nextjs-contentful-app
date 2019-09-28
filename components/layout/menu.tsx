@@ -11,9 +11,7 @@ export const Menu = () => {
         </Link>
       </NavItem>
       <NavItem>
-        <Link href="/blog" passHref>
-          <NavLink>Blog</NavLink>
-        </Link>
+        <NavLink href="/blog">Blog</NavLink>
       </NavItem>
     </Nav>
   );

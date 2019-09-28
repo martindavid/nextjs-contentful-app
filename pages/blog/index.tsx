@@ -3,25 +3,23 @@ import { Layout } from "components/layout";
 import { BlogApi, BlogPost } from "services";
 import { BlogBox } from "components/blog";
 
-type BlogPageState = {
+type BlogPageProps = {
   entries: Array<BlogPost>;
 };
 
-export default class BlogPage extends React.Component<{}, BlogPageState> {
-  state = {
-    entries: []
-  };
-
-  async componentDidMount() {
+export default class BlogPage extends React.Component<BlogPageProps> {
+  static async getInitialProps() {
     const api = new BlogApi();
     const entries = await api.fetchBlogEntries();
-    this.setState({ entries });
+    return { entries };
   }
 
   renderBlogList = entries =>
-    entries.map(entry => {
+    entries.map((entry, i) => {
       return (
         <BlogBox
+          key={i}
+          id={entry.id}
           slug={entry.slug}
           imageUrl={entry.heroImage.imageUrl}
           title={entry.title}
@@ -33,7 +31,7 @@ export default class BlogPage extends React.Component<{}, BlogPageState> {
     });
 
   render() {
-    const { entries } = this.state;
+    const { entries } = this.props;
     return (
       <Layout>
         <h1>Blog</h1>
