@@ -4,3 +4,4 @@ node_modules/
 tags
 .vim
 .vscode
+makefile

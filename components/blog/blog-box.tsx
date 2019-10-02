@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import styled from "styled-components";
+import Link from "next/link";
 
 type ImageContainerProps = {
   imageUrl: string;
@@ -31,23 +32,24 @@ export const BlogBox = (props: BlogBoxProps) => {
     <div className={`col-lg-4 ${props.className} mt-3`}>
       <article className="card">
         <ImageContainer imageUrl={props.imageUrl} className="card__img" />
-        <a href={`/blog/detail?id=${props.id}`} className="card_link">
-          <ImageContainer
-            imageUrl={props.imageUrl}
-            className="card__img--hover"
-          />
-        </a>
+        <Link href="/blog/[slug]" as={`/blog/${props.slug}`} passHref>
+          <a className="card_link">
+            <ImageContainer
+              imageUrl={props.imageUrl}
+              className="card__img--hover"
+            />
+          </a>
+        </Link>
         <div className="card__info">
           {props.tags && props.tags.length > 0 && (
             <span className="card__category">{props.tags[0]}</span>
           )}
 
-          <a
-            style={{ color: "#000", textDecoration: "none" }}
-            href={`/blog/detail?id=${props.id}`}
-          >
-            <h3 className="card__title">{props.title}</h3>
-          </a>
+          <Link href="/blog/[slug]" as={`/blog/${props.slug}`} passHref>
+            <a style={{ color: "#000", textDecoration: "none" }}>
+              <h3 className="card__title">{props.title}</h3>
+            </a>
+          </Link>
           <span className="card__by">
             by{" "}
             <a href="#" className="card__author" title="author">

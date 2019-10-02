@@ -53,7 +53,12 @@ export class BlogApi {
       tags: rawPost.tags,
       title: rawPost.title,
       heroImage: this.convertImage(rawHeroImage),
-      author: this.convertAuthor(rawAuthor)
+      author: this.convertAuthor(rawAuthor),
+      metaTitle: rawPost.metaTitle,
+      metaDescription: rawPost.metaDescription,
+      metaImage: rawPost.metaImage
+        ? rawPost.metaImage.fields.file.url.replace("//", "http://")
+        : ""
     };
   };
 
@@ -71,13 +76,19 @@ export class BlogApi {
       });
   }
 
-  async fetchBlogById(id): Promise<BlogPost> {
-    return await this.client.getEntry(id).then(entry => {
-      if (entry) {
-        const post = this.convertPost(entry);
-        return post;
-      }
-      return null;
-    });
+  async fetchBlogById(slug: string): Promise<BlogPost> {
+    return await this.client
+      .getEntries({
+        content_type: "blogPost",
+        "fields.slug[in]": slug
+      })
+      .then(entries => {
+        if (entries && entries.items && entries.items.length > 0) {
+          // Assuming it always have unique slug for every blog entry
+          const post = this.convertPost(entries.items[0]);
+          return post;
+        }
+        return null;
+      });
   }
 }

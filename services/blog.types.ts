@@ -26,4 +26,7 @@ export type BlogPost = {
   title: string;
   heroImage?: HeroImage;
   author?: Author;
+  metaTitle: string;
+  metaDescription: string;
+  metaImage?: any;
 };
