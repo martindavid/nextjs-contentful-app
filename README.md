@@ -2,6 +2,8 @@
 
 This is a codebase for blog application that I build using NextJS with Contentful API
 
+Live Demo: [https://nextjs-contentful-app.martindavid.now.sh](https://nextjs-contentful-app.martindavid.now.sh)
+
 ## Getting Started
 
 ### Clone this repo to your machine
@@ -11,7 +13,7 @@ $ git clone git@github.com:martindavid/nextjs-contentful-app.git nextjs-app
 $ cd nextjs-app
 ```
 
-## Without Docker
+### Without Docker
 
 Run it locally from [http://localhost:3000](http://localhost:3000):
 
