@@ -10,16 +10,24 @@ Live Demo: [https://nextjs-contentful-app.martindavid.now.sh](https://nextjs-con
 
 ```bash
 $ git clone git@github.com:martindavid/nextjs-contentful-app.git nextjs-app
-$ cd nextjs-app
 ```
 
-### Without Docker
+
+### Run Without Docker
+
+#### Install dependencies
+
+```bash
+$ yarn install
+```
 
 Run it locally from [http://localhost:3000](http://localhost:3000):
 
 ```bash
-$ CONTENTFUL_SPACE_ID=<space_id> CONTENTFUL_ACCESS_TOKEN=<access_token> npm run dev
+$ CONTENTFUL_SPACE_ID=<space_id> CONTENTFUL_ACCESS_TOKEN=<access_token> yarn run dev
 ```
+
+#### Deployment
 
 Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download))
 
@@ -27,7 +35,7 @@ Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.
 $ now -e CONTENTFUL_SPACE_ID=<space_id> -e CONTENTFUL_ACCESS_TOKEN=<access_token>
 ```
 
-### With Docker
+### Run With Docker
 
 Build it with docker:
 
@@ -48,6 +56,8 @@ $ docker run --rm -it \
     -e "CONTENTFUL_ACCESS_TOKEN=<contentful_access_token>" \
   next-app
 ```
+
+#### Deployment
 
 Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download))
 
