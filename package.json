@@ -12,7 +12,7 @@
     "contentful": "^8.1.6",
     "isomorphic-unfetch": "^3.1.0",
     "moment": "^2.29.1",
-    "next": "^10.0.4",
+    "next": "^11.1.0",
     "next-seo": "^4.17.0",
     "nprogress": "^0.2.0",
     "react": "17.0.1",
